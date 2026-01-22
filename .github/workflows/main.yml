@@ -7,6 +7,9 @@ on:
       - main
 jobs:
   build:
+    environment:
+      name: hml
+      url: www.test.hml
     runs-on: ubuntu-latest
     steps:
       - name: Obtendo arquivos do projeto
