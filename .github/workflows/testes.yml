@@ -6,7 +6,7 @@ jobs:
   testes_unitarios:
     environment:
       name: hml
-      url: http://www.test.hml
+      url: http://www.test1.hml
     runs-on: ubuntu-latest
     steps:
       - name: Obtendo arquivos do projeto
@@ -21,7 +21,7 @@ jobs:
   testes_integrados:
     environment:
       name: hml
-      url: http://www.test.hml
+      url: http://www.test2.hml
     runs-on: ubuntu-latest
     services:
       postgres:
