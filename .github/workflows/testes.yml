@@ -19,6 +19,7 @@ jobs:
         working-directory: ./src
         run: dotnet test ./Review-Filmes.Test.Unit/Review-Filmes.Test.Unit.csproj
   testes_integrados:
+    needs: testes_unitarios
     environment:
       name: hml
       url: http://www.test2.hml
