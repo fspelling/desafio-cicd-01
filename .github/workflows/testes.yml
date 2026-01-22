@@ -4,6 +4,9 @@ on:
   workflow_call:
 jobs:
   testes_unitarios:
+    environment:
+      name: hml
+      url: www.test.hml
     runs-on: ubuntu-latest
     steps:
       - name: Obtendo arquivos do projeto
