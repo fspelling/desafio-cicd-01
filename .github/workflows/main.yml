@@ -18,6 +18,9 @@ jobs:
       - name: Execucao do comando buils
         working-directory: ./src
         run: dotnet build Review-Filmes.sln
+  testes_qa:
+    needs: [build]
+    uses: fspelling/desafio-cicd-01/.github/workflows/testes.yml@main
   release:
     needs: [build]
     runs-on: ubuntu-latest
