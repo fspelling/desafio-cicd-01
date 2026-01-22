@@ -4,9 +4,6 @@ on:
   workflow_call:
 jobs:
   testes_unitarios:
-    environment:
-      name: hml
-      url: http://www.test1.hml
     runs-on: ubuntu-latest
     steps:
       - name: Obtendo arquivos do projeto
@@ -19,9 +16,6 @@ jobs:
         working-directory: ./src
         run: dotnet test ./Review-Filmes.Test.Unit/Review-Filmes.Test.Unit.csproj
   testes_integrados:
-    environment:
-      name: hml
-      url: http://www.test1.hml
     runs-on: ubuntu-latest
     services:
       postgres:
