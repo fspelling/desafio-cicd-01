@@ -1,0 +1,17 @@
+name: Pipeline QA
+run-name: Pipeline QA executaado pelo ${{ github.actor }}
+on:
+  workflow_call:
+jobs:
+  testes_unitarios:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Obtendo arquivos do projeto
+        uses: actions/checkout@v4
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - name: Execucao do comando test
+        working-directory: ./src
+        run: dotnet test ./Review-Filmes.Test.Unit/Review-Filmes.Test.Unit.csproj
