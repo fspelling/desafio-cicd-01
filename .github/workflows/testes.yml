@@ -21,7 +21,7 @@ jobs:
   testes_integrados:
     environment:
       name: hml
-      url: http://www.test2.hml
+      url: http://www.test1.hml
     runs-on: ubuntu-latest
     services:
       postgres:
