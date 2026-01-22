@@ -22,7 +22,7 @@ jobs:
     needs: [build]
     uses: fspelling/desafio-cicd-01/.github/workflows/testes.yml@main
   release:
-    needs: [build]
+    needs: [testes_qa]
     runs-on: ubuntu-latest
     steps:
       - name: Obtendo arquivos do projeto
