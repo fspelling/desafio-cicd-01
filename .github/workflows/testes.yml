@@ -19,7 +19,7 @@ jobs:
         working-directory: ./src
         run: dotnet test ./Review-Filmes.Test.Unit/Review-Filmes.Test.Unit.csproj
   testes_integrados:
-     environment:
+      environment:
       name: hml
       url: http://www.test1.hml
     runs-on: ubuntu-latest
