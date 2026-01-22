@@ -20,7 +20,7 @@ jobs:
         run: dotnet test ./Review-Filmes.Test.Unit/Review-Filmes.Test.Unit.csproj
   testes_integrados:
     environment:
-      name: prd
+      name: hml
       url: http://www.test2.hml
     runs-on: ubuntu-latest
     services:
