@@ -60,10 +60,14 @@ jobs:
           dotnet sonarscanner begin /k:"review-filmes" /d:sonar.host.url="${{ vars.SONAR_HOST_URL }}"  /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
           dotnet build Review-Filmes.sln
           dotnet sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
-      - name: Verificacao quality gata
+      - name: Verificacao quality gate
+        id: verificacao-qualitygate
         uses: sonarsource/sonarqube-quality-gate-action@master
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ vars.SONAR_HOST_URL }}
         with:
           scanMetadataReportFile: ./src/.sonarqube/out/.sonar/report-task.txt
+      - name: Exibindo status quality-gate
+        if: ${{ success() || failure() }}
+        run: echo "Status do quality-gate = ${{ steps.verificacao-qualitygate.outputs.quality-gate-status }}"
