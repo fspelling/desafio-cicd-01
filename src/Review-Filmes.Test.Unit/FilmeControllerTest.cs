@@ -23,6 +23,8 @@ namespace Review_Filmes.Test.Unit
 		[Test]
 		public void Cadastro_Review()
 		{
+			string test;
+			
 			mockFilmeRepository = new(MockBehavior.Strict);
 
 			mockFilmeRepository.Setup(s => s.GetById(1))
