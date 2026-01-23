@@ -55,7 +55,8 @@ jobs:
       - name: Instalacao do sonar qube scanner
         run: dotnet tool install --global dotnet-sonarscanner
       - name: Build e analise sonar
+        working-directory: ./src
         run: |
           dotnet sonarscanner begin /k:"review-filmes" /d:sonar.host.url="${{ vars.SONAR_HOST_URL }}"  /d:sonar.token="sqp_339a6480f667c81c81e97db9ed77dc16707946dc"
-          dotnet build
+          dotnet build Review-Filmes.sln
           dotnet sonarscanner end /d:sonar.token="sqp_339a6480f667c81c81e97db9ed77dc16707946dc"
