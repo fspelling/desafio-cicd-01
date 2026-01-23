@@ -52,6 +52,8 @@ jobs:
         with:
           distribution: adopt
           java-version: '21'
+      - name: Instalacao do sonar qube scanner
+        run: dotnet tool install --global dotnet-sonarscanner
       - name: Build e analise sonar
         run: |
           dotnet sonarscanner begin /k:"review-filmes" /d:sonar.host.url="${{ vars.SONAR_HOST_URL }}"  /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
