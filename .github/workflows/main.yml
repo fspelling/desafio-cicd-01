@@ -21,6 +21,7 @@ jobs:
   testes_qa:
     needs: [build]
     uses: fspelling/desafio-cicd-01/.github/workflows/testes.yml@main
+    secrets: inherit
   release:
     needs: [testes_qa]
     runs-on: ubuntu-latest
