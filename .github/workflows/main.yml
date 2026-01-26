@@ -55,3 +55,8 @@ jobs:
           format: sarif
           output: trivy-docker-result.sarif
           severity: 'UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL'
+      - name: Publicando vulnerabilidades
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          category: 'trivy-result'
+          sarif-file: trivy-docker-result.sarif
