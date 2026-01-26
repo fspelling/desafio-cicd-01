@@ -59,4 +59,4 @@ jobs:
         uses: github/codeql-action/upload-sarif@v3
         with:
           category: 'trivy-result'
-          sarif-file: trivy-docker-result.sarif
+          sarif_file: trivy-docker-result.sarif
