@@ -47,3 +47,11 @@ jobs:
           tags: |
             fspelling/projeto-devops-pro:latest
             fspelling/projeto-devops-pro:v${{ github.run_number }}
+      - name: Scan trivy
+        uses: aquasecurity/trivy-action@0.23.0
+        with:
+          scan-type: 'image'
+          image-ref: fspelling/projeto-devops-pro:v${{ github.run_number }}
+          format: sarif
+          output: trivy-docker-result.sarif
+          severity: 'UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL'
