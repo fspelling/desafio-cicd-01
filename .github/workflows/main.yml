@@ -55,18 +55,16 @@ jobs:
           format: sarif
           output: trivy-docker-result-full.sarif
           severity: 'UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL'
-      #- name: Scan trivy
-       # uses: aquasecurity/trivy-action@0.23.0
-       # with:
-        #  scan-type: 'image'
-       #   image-ref: fspelling/projeto-devops-pro:v${{ github.run_number }}
-        #  format: sarif
-       #   output: trivy-docker-result-critical.sarif
-       #   severity: 'CRITICAL'
-        #  exit-code: '1'
       - name: Publicando vulnerabilidades
         if: success() || failure()
         uses: github/codeql-action/upload-sarif@v3
         with:
           category: 'trivy-result'
           sarif_file: trivy-docker-result-full.sarif
+  deploy_hml:
+    needs: [release]
+    uses: fspelling/desafio-cicd-01/.github/workflows/deploy.yml@main
+    secrets: inherit
+    #with:
+      #environment_name: hml
+      #environment_url: http://homologacao.fspelling.com
