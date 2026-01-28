@@ -1,3 +1,22 @@
+# Deploy ingress
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: reviewfilmes
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: [host-name]
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: reviewfilmes
+                port: 
+                  number: 80
+---
 # Deploy do postgre
 apiVersion: apps/v1
 kind: Deployment
@@ -74,24 +93,3 @@ spec:
       targetPort: 8080
       #nodePort: 30000
   type: LoadBalancer
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: reviewfilmes
-  labels:
-    name: reviewfilmes
-spec:
-  ingressClassName: nginx
-  rules:
-  - host: homologacao.fabricioveronez.com
-    http:
-      paths:
-      - pathType: Prefix
-        path: "/"
-        backend:
-          service:
-            name: reviewfilmes
-            port: 
-              number: 80
-
