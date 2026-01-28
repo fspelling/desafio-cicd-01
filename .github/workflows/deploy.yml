@@ -1,20 +1,20 @@
 name: Deploy
 on:
   workflow_call:
-    # inputs:
-    #   environment_name:
-    #     type: string
-    #     required: true
-    #     description: "Nome do ambiente que sera realizado o deploy"
-    #   environment_url:
-    #     type: string
-    #     description: "Nome do ambiente que sera realizado o deploy"
+    inputs:
+      environment_name:
+        type: string
+        required: true
+        description: "Nome do ambiente que sera realizado o deploy"
+      environment_url:
+        type: string
+        description: "Nome do ambiente que sera realizado o deploy"
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    # environment:
-    #   name: ${{ inputs.environment_name }}
-    #   url: ${{ inputs.environment_name }}
+    environment:
+      name: ${{ inputs.environment_name }}
+      url: ${{ inputs.environment_name }}
     steps:
       - name: "Obtendo arquivos do projeto"
         uses: actions/checkout@v4
