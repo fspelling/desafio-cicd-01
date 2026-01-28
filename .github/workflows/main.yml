@@ -65,6 +65,6 @@ jobs:
     needs: [release]
     uses: fspelling/desafio-cicd-01/.github/workflows/deploy.yml@main
     secrets: inherit
-    #with:
-      #environment_name: hml
-      #environment_url: http://homologacao.fspelling.com
+    with:
+      environment_name: hml
+      environment_url: http://homologacao.fspelling.com
