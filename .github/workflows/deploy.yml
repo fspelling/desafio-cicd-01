@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: ${{ inputs.environment_name }}
-      url: ${{ inputs.environment_name }}
+      url: ${{ inputs.environment_url }}
     steps:
       - name: "Obtendo arquivos do projeto"
         uses: actions/checkout@v4
@@ -24,6 +24,9 @@ jobs:
         with:
           method: kubeconfig
           kubeconfig: ${{ secrets.K8S_CONFIG }}
+
+      - name: "Atualizar host name"
+        run: "sed -i s/host: [host-name]/host: ${{ inputs.environment_url }}"
 
       - name: "Execução dos manifestos" 
         uses: azure/k8s-deploy@v5
