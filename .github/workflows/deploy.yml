@@ -28,6 +28,7 @@ jobs:
       - name: "Execução dos manifestos" 
         uses: azure/k8s-deploy@v5
         with:
+          namespace: ${{ inputs.environment_name }}
           manifests: |
             ./k8s/deployment.yaml
           images: |
