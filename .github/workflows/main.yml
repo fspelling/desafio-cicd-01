@@ -73,7 +73,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: hml
     container:
-      image: fabricioveronez/webdriver-dotnet
+      image: fabricioveronez/webdriver-dotnet:chrome
       env:
         BASE_URL: "http://${{ vars.K8S_BASE_URL }}"
     steps:
