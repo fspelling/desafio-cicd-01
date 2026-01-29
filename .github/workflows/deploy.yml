@@ -25,8 +25,9 @@ jobs:
           method: kubeconfig
           kubeconfig: ${{ secrets.K8S_CONFIG }}
 
-      - name: "Atualizar host name"
-        run: "sed -i s/host: [host-name]/host: ${{ inputs.environment_url }}"
+      - name: Atualizar host name
+        run: |
+          sed -i "s|host: \[host-name\]|host: ${{ inputs.environment_url }}|" arquivo.yaml
 
       - name: "Execução dos manifestos" 
         uses: azure/k8s-deploy@v5
