@@ -27,7 +27,7 @@ jobs:
 
       - name: Atualizar host name
         run: |
-          sed -i "s|host: \[host-name\]|host: ${{ inputs.environment_url }}|" arquivo.yaml
+          sed -i "s|host: \[host-name\]|host: ${{ inputs.environment_url }}|" .k8s/deployment.yaml
 
       - name: "Execução dos manifestos" 
         uses: azure/k8s-deploy@v5
