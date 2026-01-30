@@ -18,13 +18,12 @@ jobs:
       - name: Execucao do comando buils
         working-directory: ./src
         run: dotnet build Review-Filmes.sln
-  # testes_qa:
-   # needs: [build]
-   # uses: fspelling/desafio-cicd-01/.github/workflows/testes.yml@main
-   # secrets: inherit
+  testes_qa:
+   needs: [build]
+   uses: fspelling/desafio-cicd-01/.github/workflows/testes.yml@main
+   secrets: inherit
   release:
-   # needs: [testes_qa]
-    needs: [build]
+    needs: [testes_qa]
     runs-on: ubuntu-latest
     steps:
       - name: Obtendo arquivos do projeto
@@ -62,26 +61,26 @@ jobs:
           category: 'trivy-result'
           sarif_file: trivy-docker-result-full.sarif
   deploy_hml:
-    needs: [release]
+    needs: [testes_qa]
     uses: fspelling/desafio-cicd-01/.github/workflows/deploy.yml@main
     secrets: inherit
     with:
       environment_name: hml
       environment_url: http://hml.fspelling.com
-  # teste_e2e:
-  #   needs: [deploy_hml]
-  #   runs-on: ubuntu-latest
-  #   environment: hml
-  #   container:
-  #     image: fabricioveronez/webdriver-dotnet:chrome
-  #     env:
-  #       BASE_URL: "http://${{ vars.K8S_BASE_URL }}"
-  #   steps:
-  #     - name: "Obtendo arquivos do projeto"
-  #       uses: actions/checkout@v4
-  #     - name: "Execucao testes e2e"
-  #       working-directory: ./src
-  #       run: dotnet test ./Review-Filmes.Test.EndToEnd/Review-Filmes.Test.EndToEnd.csproj
+  teste_e2e:
+    needs: [deploy_hml]
+    runs-on: ubuntu-latest
+    environment: hml
+    container:
+      image: fabricioveronez/webdriver-dotnet:chrome
+      env:
+        BASE_URL: "http://${{ vars.K8S_BASE_URL }}"
+    steps:
+      - name: "Obtendo arquivos do projeto"
+        uses: actions/checkout@v4
+      - name: "Execucao testes e2e"
+        working-directory: ./src
+        run: dotnet test ./Review-Filmes.Test.EndToEnd/Review-Filmes.Test.EndToEnd.csproj
   deploy_prd:
     needs: [deploy_hml]
     uses: fspelling/desafio-cicd-01/.github/workflows/deploy.yml@main
