@@ -61,7 +61,7 @@ jobs:
           category: 'trivy-result'
           sarif_file: trivy-docker-result-full.sarif
   deploy_hml:
-    needs: [testes_qa]
+    needs: [release]
     uses: fspelling/desafio-cicd-01/.github/workflows/deploy.yml@main
     secrets: inherit
     with:
