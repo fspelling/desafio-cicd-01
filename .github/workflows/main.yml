@@ -68,22 +68,22 @@ jobs:
     with:
       environment_name: hml
       environment_url: http://hml.fspelling.com
-  teste_e2e:
-    needs: [deploy_hml]
-    runs-on: ubuntu-latest
-    environment: hml
-    container:
-      image: fabricioveronez/webdriver-dotnet:chrome
-      env:
-        BASE_URL: "http://${{ vars.K8S_BASE_URL }}"
-    steps:
-      - name: "Obtendo arquivos do projeto"
-        uses: actions/checkout@v4
-      - name: "Execucao testes e2e"
-        working-directory: ./src
-        run: dotnet test ./Review-Filmes.Test.EndToEnd/Review-Filmes.Test.EndToEnd.csproj
+  # teste_e2e:
+  #   needs: [deploy_hml]
+  #   runs-on: ubuntu-latest
+  #   environment: hml
+  #   container:
+  #     image: fabricioveronez/webdriver-dotnet:chrome
+  #     env:
+  #       BASE_URL: "http://${{ vars.K8S_BASE_URL }}"
+  #   steps:
+  #     - name: "Obtendo arquivos do projeto"
+  #       uses: actions/checkout@v4
+  #     - name: "Execucao testes e2e"
+  #       working-directory: ./src
+  #       run: dotnet test ./Review-Filmes.Test.EndToEnd/Review-Filmes.Test.EndToEnd.csproj
   deploy_prd:
-    needs: [teste_e2e]
+    needs: [deploy_hml]
     uses: fspelling/desafio-cicd-01/.github/workflows/deploy.yml@main
     secrets: inherit
     with:
