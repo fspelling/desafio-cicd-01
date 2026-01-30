@@ -82,7 +82,7 @@ jobs:
         working-directory: ./src
         run: dotnet test ./Review-Filmes.Test.EndToEnd/Review-Filmes.Test.EndToEnd.csproj
   deploy_prd:
-    needs: [deploy_hml]
+    needs: [teste_e2e]
     uses: fspelling/desafio-cicd-01/.github/workflows/deploy.yml@main
     secrets: inherit
     with:
